@@ -6,24 +6,24 @@ import (
 )
 
 type RandomString struct {
-	pool string
+	pool []rune
 	r    *rand.Rand
 	l    int
 }
 
 func New(pool string) *RandomString {
 	p := new(RandomString)
-	p.pool = pool
+	p.pool = []rune(pool)
 	p.r = rand.New(rand.NewSource(time.Now().UnixNano()))
-	p.l = len(pool)
+	p.l = len(p.pool)
 	return p
 }
 
 func (rs *RandomString) Rand(n int) string {
-	s := ""
+	b := make([]rune, n)
 	for i := 0; i < n; i++ {
 		x := rs.r.Intn(rs.l)
-		s = s + rs.pool[x:x+1]
+		b[i] = rs.pool[x]
 	}
-	return s
+	return string(b)
 }
