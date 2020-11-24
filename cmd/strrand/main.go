@@ -64,10 +64,12 @@ func main() {
 
 func usage() {
 	fmt.Fprintf(os.Stderr,
-`Usage:
+`%s - Generate a string of length N
+
+Usage:
   %s [options] <N>
 
 Options:
-`, progName)
+`, progName, progName)
 	flag.PrintDefaults()
 }
