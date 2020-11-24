@@ -14,16 +14,9 @@ const (
 	progVersion = "v0.1.0"
 )
 
-func main() {
-	flag.Usage = func() {
-		fmt.Fprintf(os.Stderr,
-`Usage:
-  %s [options] <N>
 
-Options:
-`, progName)
-		flag.PrintDefaults()
-	}
+func main() {
+	flag.Usage = usage
 	opt_version := flag.Bool("version", false, "Show version.")
 	flag.Parse()
 	if *opt_version {
@@ -46,6 +39,13 @@ Options:
 	fmt.Println(rs.Rand(n))
 }
 
+
 func usage() {
-	fmt.Fprintf(os.Stderr, "Usage: %s <N>\n", os.Args[0])
+	fmt.Fprintf(os.Stderr,
+`Usage:
+  %s [options] <N>
+
+Options:
+`, progName)
+	flag.PrintDefaults()
 }
