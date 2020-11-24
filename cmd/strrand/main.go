@@ -11,7 +11,7 @@ import (
 
 const (
 	progName = "strrand"
-	progVersion = "v0.1.0"
+	progVersion = "v0.2.0"
 
 	uppercases = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 	lowercases = "abcdefghijklmnopqrstuvwxyz"
