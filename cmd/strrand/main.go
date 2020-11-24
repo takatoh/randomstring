@@ -12,16 +12,38 @@ import (
 const (
 	progName = "strrand"
 	progVersion = "v0.1.0"
+
+	uppercases = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+	lowercases = "abcdefghijklmnopqrstuvwxyz"
+	digits = "1234567890"
 )
 
 
 func main() {
 	flag.Usage = usage
+	opt_upper := flag.Bool("upper", false, "Include upper case letters.")
+	opt_lower := flag.Bool("lower", false, "Include lower case letters.")
+	opt_digit := flag.Bool("digit", false, "Include digits.")
 	opt_version := flag.Bool("version", false, "Show version.")
 	flag.Parse()
+
 	if *opt_version {
 		fmt.Println(progVersion)
 		os.Exit(0)
+	}
+
+	pool := ""
+	if *opt_upper {
+		pool = pool + uppercases
+	}
+	if *opt_lower {
+		pool = pool + lowercases
+	}
+	if *opt_digit {
+		pool = pool + digits
+	}
+	if len(pool) == 0 {
+		pool = uppercases + lowercases + digits
 	}
 
 	if len(flag.Args()) < 1 {
@@ -29,13 +51,13 @@ func main() {
 		os.Exit(0)
 	}
 
-	n, err := strconv.Atoi(os.Args[1])
+	n, err := strconv.Atoi(flag.Args()[0])
 	if err != nil {
 		usage()
 		os.Exit(0)
 	}
 
-	rs := randomstring.New("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890")
+	rs := randomstring.New(pool)
 	fmt.Println(rs.Rand(n))
 }
 
