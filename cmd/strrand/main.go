@@ -24,6 +24,7 @@ func main() {
 	opt_upper := flag.Bool("upper", false, "Include upper case letters.")
 	opt_lower := flag.Bool("lower", false, "Include lower case letters.")
 	opt_digit := flag.Bool("digit", false, "Include digits.")
+	opt_include := flag.String("include", "", "Include specified letters.")
 	opt_version := flag.Bool("version", false, "Show version.")
 	flag.Parse()
 
@@ -45,6 +46,7 @@ func main() {
 	if len(pool) == 0 {
 		pool = uppercases + lowercases + digits
 	}
+	pool = pool + *opt_include
 
 	if len(flag.Args()) < 1 {
 		usage()
