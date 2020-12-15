@@ -13,7 +13,7 @@ type RandomString struct {
 
 func New(pool string) *RandomString {
 	p := new(RandomString)
-	p.pool = []rune(pool)
+	p.pool = uniq([]rune(pool))
 	p.r = rand.New(rand.NewSource(time.Now().UnixNano()))
 	p.l = len(p.pool)
 	return p
@@ -26,4 +26,16 @@ func (rs *RandomString) Rand(n int) string {
 		b[i] = rs.pool[x]
 	}
 	return string(b)
+}
+
+func uniq(s []rune) []rune {
+	m := make(map[rune]struct{})
+	for _, e := range s {
+		m[e] = struct{}{}
+	}
+	u := []rune{}
+	for i := range m {
+		u = append(u, i)
+	}
+	return u
 }
