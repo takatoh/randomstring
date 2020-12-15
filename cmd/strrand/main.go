@@ -25,6 +25,8 @@ func main() {
 	opt_lower := flag.Bool("lower", false, "Include lower case letters.")
 	opt_digit := flag.Bool("digit", false, "Include digits.")
 	opt_include := flag.String("include", "", "Include specified letters.")
+	opt_squote := flag.Bool("squote", false, "Include single quote(').")
+	opt_dquote := flag.Bool("dquote", false, "Include double quote(\").")
 	opt_version := flag.Bool("version", false, "Show version.")
 	flag.Parse()
 
@@ -47,6 +49,12 @@ func main() {
 		pool = uppercases + lowercases + digits
 	}
 	pool = pool + *opt_include
+	if *opt_squote {
+		pool = pool + "'"
+	}
+	if *opt_dquote {
+		pool = pool + "\""
+	}
 
 	if len(flag.Args()) < 1 {
 		usage()
