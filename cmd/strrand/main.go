@@ -74,7 +74,7 @@ func main() {
 
 func usage() {
 	fmt.Fprintf(os.Stderr,
-`%s - Generate a string of length N
+`%s - Generate a random string of length N
 
 Usage:
   %s [options] <N>
