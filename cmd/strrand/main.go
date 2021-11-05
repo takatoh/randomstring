@@ -10,14 +10,13 @@ import (
 )
 
 const (
-	progName = "strrand"
+	progName    = "strrand"
 	progVersion = "v0.3.0"
 
 	uppercases = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 	lowercases = "abcdefghijklmnopqrstuvwxyz"
-	digits = "1234567890"
+	digits     = "1234567890"
 )
-
 
 func main() {
 	flag.Usage = usage
@@ -71,10 +70,9 @@ func main() {
 	fmt.Println(rs.Rand(n))
 }
 
-
 func usage() {
 	fmt.Fprintf(os.Stderr,
-`%s - Generate a random string of length N
+		`%s - Generate a random string of length N
 
 Usage:
   %s [options] <N>
