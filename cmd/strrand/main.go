@@ -26,11 +26,19 @@ func main() {
 	opt_include := flag.String("include", "", "Include specified letters.")
 	opt_squote := flag.Bool("squote", false, "Include single quote(').")
 	opt_dquote := flag.Bool("dquote", false, "Include double quote(\").")
+	opt_uuid := flag.Bool("uuid", false, "Generate random string based on UUID version 4.")
 	opt_version := flag.Bool("version", false, "Show version.")
 	flag.Parse()
 
 	if *opt_version {
 		fmt.Println(progVersion)
+		os.Exit(0)
+	}
+
+	if *opt_uuid {
+		sbu := randomstring.NewStringBasedUUID()
+		s := sbu.Generate()
+		fmt.Println(s)
 		os.Exit(0)
 	}
 
