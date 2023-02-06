@@ -21,10 +21,8 @@ func NewStringBasedUUID() *StringBasedUUID {
 
 func (sbu *StringBasedUUID) Generate() string {
 	u := uuid.New()
-	data := make([]byte, 0)
-	for _, b := range u {
-		data = append(data, b)
-	}
+	// convert array to slice.
+	data := u[:]
 	dst := make([]byte, base32.StdEncoding.EncodedLen(len(data)))
 	base32.StdEncoding.Encode(dst, data)
 	s := make([]string, 0)
