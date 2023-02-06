@@ -80,12 +80,17 @@ func main() {
 
 func usage() {
 	fmt.Fprintf(os.Stderr,
-		`%s - Generate a random string of length N
+		`%s - Generate a random string
 
 Usage:
+
+Random string of length <N>
   %s [options] <N>
 
+Or string based on UUID version 4
+  %s -uuid
+
 Options:
-`, progName, progName)
+`, progName, progName, progName)
 	flag.PrintDefaults()
 }
